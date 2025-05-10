@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Website Name -->
+        <h1>Password Manager</h1>
+        
+        <!-- Add New Password Button -->
+        <a href="/add" class="btn btn-primary">Add New Password</a>
+        
+        <!-- Table to Display Passwords -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Website</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for password in passwords %}
+                <tr>
+                    <td>{{ password.website }}</td>
+                    <td>{{ password.username }}</td>
+                    <td class="hidden-password">••••••••</td>
+                    <td>
+                        <a href="/view/{{ password.id }}" class="btn btn-secondary">View</a>
+                        <a href="/edit/{{ password.id }}" class="btn btn-success">Edit</a>
+                        <a href="/delete/{{ password.id }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
